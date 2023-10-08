@@ -1,6 +1,5 @@
 package edu.psu.music_api.client.model.deserializer;
 
-import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -10,15 +9,11 @@ import edu.psu.music_api.client.model.response.SearchResult;
 import org.springframework.boot.jackson.JsonComponent;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 @JsonComponent
 public class SearchDeserializer extends JsonDeserializer<SearchResult> {
-    private static final String DATE_PATTERN = "MMM. d, yyyy";
-
     @Override
     public SearchResult deserialize(JsonParser parser, DeserializationContext context) throws IOException {
         JsonNode jsonNode = parser.getCodec().readTree(parser);
@@ -30,7 +25,7 @@ public class SearchDeserializer extends JsonDeserializer<SearchResult> {
                 Record record = new Record(
                         result.get("primary_artist").get("name").asText(),
                         result.get("title").asText(),
-                        extractDate(result),
+                        result.get("release_date_with_abbreviated_month_for_display").asText(),
                         result.get("song_art_image_thumbnail_url").asText(),
                         result.get("id").asText(),
                         result.get("primary_artist").get("id").asText(),
@@ -59,7 +54,4 @@ public class SearchDeserializer extends JsonDeserializer<SearchResult> {
         return _featuredArtists;
     }
 
-    private LocalDate extractDate(JsonNode result) {
-        return LocalDate.parse(result.get("release_date_with_abbreviated_month_for_display").asText(), DateTimeFormatter.ofPattern(DATE_PATTERN));
-    }
 }

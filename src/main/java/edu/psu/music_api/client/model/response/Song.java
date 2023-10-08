@@ -1,6 +1,5 @@
 package edu.psu.music_api.client.model.response;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class Song {
@@ -9,7 +8,7 @@ public class Song {
     private final String primaryArtist;
     private final List<String> featuredArtists;
     private final String album;
-    private final LocalDate releaseDate;
+    private final String releaseDate;
     private final String thumbnail;
     private final List<String> description;
 
@@ -19,7 +18,7 @@ public class Song {
             String primaryArtist,
             List<String> featuredArtists,
             String album,
-            LocalDate releaseDate,
+            String releaseDate,
             String thumbnail,
             List<String> description
     ) {
@@ -45,7 +44,7 @@ public class Song {
         return album;
     }
 
-    public LocalDate getReleaseDate() {
+    public String getReleaseDate() {
         return releaseDate;
     }
 

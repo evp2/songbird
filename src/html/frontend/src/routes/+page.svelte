@@ -1,7 +1,7 @@
 <div class="navbar bg-base-100">
     <div>
         <Fa icon={faDove} />
-        <a class="text-xl px-2" href="#">SongBird</a>
+        <a class="text-xl px-2" href="/search">SongBird</a>
     </div>
 </div>
 <div class="hero min-h-screen bg-base-100" style="margin: auto;width: 50%;">
@@ -13,12 +13,13 @@
             <div class="py-6">
                 <p>An application that enables searching for Artists, Albums, and Songs.</p>
                 <br>
+                <p>By Evan Pomponio</p>
             </div>
             <div>
                 <p class="py-6">Technologies:</p>
             </div>
             <div>
-                <ul style="text-indent: 25px;">
+                <ul>
                     <li>Spring Boot</li>
                     <li>SvelteKit</li>
                     <li>Genius API</li>

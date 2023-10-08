@@ -1,7 +1,7 @@
 <div class="navbar bg-base-100">
     <div>
         <Fa icon={faDove} />
-        <a class="text-xl px-2" href="#">SongBird</a>
+        <a class="text-xl px-2" href="/">SongBird</a>
 
         <form on:submit|preventDefault={handleSubmit}>
             <input type="text" name="query" class="input input-bordered" bind:value={input} />
@@ -14,7 +14,7 @@
         </div>
     {/if}
 </div>
-{#if searchResults}
+{#if Array.isArray(searchResults) && searchResults.length > 0}
     <div class="overflow-x-auto">
         <table class="table mx-8">
             <thead>
@@ -59,9 +59,7 @@
                             </td>
                             <td>
                                 {#if result.featuredArtists.length > 0}
-                                    <div class="badge badge-outline">
-                                        {result.featuredArtists}
-                                    </div>
+                                    {result.featuredArtists}
                                 {/if}
                             </td>
                         </tr>
@@ -105,20 +103,23 @@
         event.preventDefault();
         loadingState = true;
         try {
-            let response = await state.search(input);
-            searchResults = [];
-            response.songs.forEach((song) => {
-                searchResults.push({
-                    artistId: song.artistId,
-                    songTitle: song.songTitle,
-                    songId: song.songId,
-                    releaseDate: song.releaseDate,
-                    thumbnail: song.thumbnail,
-                    artistName: song.artistName,
-                    featuredArtists: song.featuredArtists
+            if (input && input.toString().length > 0) {
+                let response = await state.search(input);
+                searchResults = [];
+                response.songs.forEach((song) => {
+                    searchResults.push({
+                        artistId: song.artistId,
+                        songTitle: song.songTitle,
+                        songId: song.songId,
+                        releaseDate: song.releaseDate,
+                        thumbnail: song.thumbnail,
+                        artistName: song.artistName,
+                        featuredArtists: song.featuredArtists
+                    });
                 });
-            });
-            loadingState = false;
+                loadingState = false;
+            } else
+                throw new Error("Enter the name of an Artist, Album, or Song");
         } catch (error) {
             loadingState = false;
             searchResults = [];

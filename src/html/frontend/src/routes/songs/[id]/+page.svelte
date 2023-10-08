@@ -1,7 +1,7 @@
 <div class="navbar bg-base-100">
     <div>
         <Fa icon={faDove} />
-        <a class="text-xl px-2" href="#">SongBird</a>
+        <a class="text-xl px-2" href="/search">SongBird</a>
     </div>
 </div>
 <div class="flex my-6 space-x-8" style="margin: auto;width: 80%;">
