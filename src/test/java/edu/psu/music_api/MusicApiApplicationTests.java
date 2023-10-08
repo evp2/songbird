@@ -37,7 +37,6 @@ public class MusicApiApplicationTests {
         String response = geniusClient.query("Kendrick Lamar");
         SearchResult searchResult = objectMapper.readValue(response, SearchResult.class);
         assertNotNull(searchResult);
-        System.out.println(searchResult.toString());
     }
 
     @Test
@@ -45,7 +44,6 @@ public class MusicApiApplicationTests {
         String response = geniusClient.artistInfo("1421", "html");
         Artist artist = objectMapper.readValue(response, Artist.class);
         assertNotNull(artist);
-        System.out.println(artist.toString());
     }
 
     @Test
@@ -53,6 +51,5 @@ public class MusicApiApplicationTests {
         String response = geniusClient.songInfo("378195", "html");
         Song song = objectMapper.readValue(response, Song.class);
         assertNotNull(song);
-        System.out.println(song.toString());
     }
 }

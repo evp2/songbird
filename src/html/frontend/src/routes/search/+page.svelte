@@ -1,7 +1,7 @@
 <div class="navbar bg-base-100">
     <div>
         <Fa icon={faDove} />
-        <a class="text-xl px-2">SongBird</a>
+        <a class="text-xl px-2" href="#">SongBird</a>
 
         <form on:submit|preventDefault={handleSubmit}>
             <input type="text" name="query" class="input input-bordered" bind:value={input} />
@@ -9,12 +9,11 @@
         </form>
     </div>
     {#if loadingState}
-        <div>
+        <div class="px-2">
             <Fa icon={faSpinner} size="3x" pulse />
         </div>
     {/if}
 </div>
-
 {#if searchResults}
     <div class="overflow-x-auto">
         <table class="table mx-8">
@@ -43,7 +42,7 @@
                             <td>
                                 <div class="flex items-center space-x-3">
                                     <div class="thumbnail">
-                                        <div class="w-24 h-24">
+                                        <div class="w-36 h-36">
                                             <img src={result.thumbnail} />
                                         </div>
                                     </div>
@@ -86,16 +85,27 @@
                 input = value.query;
             }
             if (value.results !== null) {
-                console.log(value.results);
+                searchResults = [];
+                value.results.songs.forEach((song) => {
+                    searchResults.push({
+                        artistId: song.artistId,
+                        songTitle: song.songTitle,
+                        songId: song.songId,
+                        releaseDate: song.releaseDate,
+                        thumbnail: song.thumbnail,
+                        artistName: song.artistName,
+                        featuredArtists: song.featuredArtists
+                    });
+                });
             }
         }
     });
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         loadingState = true;
         try {
             let response = await state.search(input);
-            //console.log(response);
             searchResults = [];
             response.songs.forEach((song) => {
                 searchResults.push({
@@ -107,11 +117,11 @@
                     artistName: song.artistName,
                     featuredArtists: song.featuredArtists
                 });
-
             });
             loadingState = false;
         } catch (error) {
             loadingState = false;
+            searchResults = [];
             alert(error.message);
         }
     };

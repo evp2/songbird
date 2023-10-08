@@ -14,10 +14,10 @@ import java.util.StringJoiner;
 
 @JsonComponent
 public class ArtistDeserializer extends JsonDeserializer<Artist> {
-    private static String FORMAT = "html";
+    private static final String FORMAT = "html";
 
     @Override
-    public Artist deserialize(JsonParser parser, DeserializationContext context) throws IOException, JacksonException {
+    public Artist deserialize(JsonParser parser, DeserializationContext context) throws IOException {
         JsonNode jsonNode = parser.getCodec().readTree(parser);
         JsonNode edge = jsonNode.get("response").get("artist");
         Artist artist = new Artist(
@@ -41,7 +41,6 @@ public class ArtistDeserializer extends JsonDeserializer<Artist> {
     }
 
     private String extractAlternateNames(JsonNode edge) {
-
         if (edge == null || !edge.has("alternate_names")) {
             return "";
         }
@@ -57,5 +56,4 @@ public class ArtistDeserializer extends JsonDeserializer<Artist> {
 
         return joiner.toString();
     }
-
 }

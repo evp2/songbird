@@ -1,10 +1,10 @@
 <div class="navbar bg-base-100">
     <div>
         <Fa icon={faDove} />
-        <a class="text-xl px-2">SongBird</a>
+        <a class="text-xl px-2" href="#">SongBird</a>
     </div>
 </div>
-<div class="grid grid-cols-2 mx-10 my-6">
+<div class="flex my-6 space-x-8" style="margin: auto;width: 80%;">
     {#if data.song}
         <div class="flex flex-col space-y-4">
             <div class="w-48 rounded-full">
@@ -17,19 +17,19 @@
                 <p>{data.song.primaryArtist}</p>
             </div>
             <div>
-                <p>{data.song.album}</p>
+                <p class="info"><b>Album:</b>&nbsp;{data.song.album}</p>
             </div>
             <div>
-                <p>{data.song.releaseDate}</p>
+                <p class="info"><b>Release Date:</b>&nbsp;{data.song.releaseDate}</p>
             </div>
-            {#if data.song.featuredArtists}
+            {#if data.song.featuredArtists.toString() > 0}
                 <div>
-                    <p>{data.song.featuredArtists}</p>
+                    <p><b>Featuring:</b>&nbsp;{data.song.featuredArtists}</p>
                 </div>
             {/if}
         </div>
         <div>
-            {#if data.song.description}
+            {#if data.song.description && data.song.description.toString().length > 15}
                 <div class="description">
                     {@html data.song.description}
                 </div>
@@ -45,6 +45,13 @@
     }
     .description :global(p) {
         text-indent: 25px;
+    }
+    .info {
+        white-space: nowrap;
+    }
+    .description :global(a) {
+        color: darkslategray;
+        text-decoration: underline;
     }
 </style>
 <script>

@@ -12,11 +12,12 @@ const createState = () => {
             return set({results, query});
         },
         search: async (query) => {
-            set({ results: null, query: query });
             let param = encodeURIComponent(query);
-            return await fetch(`http://localhost:8080/search?query=${param}`, {
+            let response = await fetch(`http://localhost:8080/search?query=${param}`, {
                 method: "GET",
             }).then((response) => response.json());
+            set({ results: response, query: query });
+            return response;
         },
         update: async (results, query) => {
             return set({results, query});

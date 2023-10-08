@@ -61,6 +61,7 @@ public class GeniusClient {
         }
         return response;
     }
+
     public String songInfo(String id, String textFormat) {
         WebTarget webTarget = JerseyClientBuilder.createClient().target(apiUrl);
         webTarget.register(new BearerAuthClientFilter(token), Priorities.HEADER_DECORATOR);

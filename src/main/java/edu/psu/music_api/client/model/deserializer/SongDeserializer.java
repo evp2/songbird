@@ -16,11 +16,11 @@ import java.util.List;
 
 @JsonComponent
 public class SongDeserializer extends JsonDeserializer<Song> {
-    private static String FORMAT = "html";
+    private static final String FORMAT = "html";
     private static final String DATE_PATTERN = "MMM. d, yyyy";
 
     @Override
-    public Song deserialize(JsonParser parser, DeserializationContext context) throws IOException, JacksonException {
+    public Song deserialize(JsonParser parser, DeserializationContext context) throws IOException {
         JsonNode jsonNode = parser.getCodec().readTree(parser);
         JsonNode edge = jsonNode.get("response").get("song");
         Song song = new Song(

@@ -1,30 +1,30 @@
 <div class="navbar bg-base-100">
     <div>
         <Fa icon={faDove} />
-        <a class="text-xl px-2">SongBird</a>
+        <a class="text-xl px-2" href="#">SongBird</a>
     </div>
 </div>
-<div class="grid grid-cols-2 mx-10 my-6">
+<div class="flex my-6 space-x-8" style="margin: auto;width: 80%;">
     {#if data.artist}
         <div class="flex flex-col space-y-4">
-            <div class="w-48 rounded-full">
+            <div class="w-48 h-48">
                 <img src={data.artist.imageUrl} />
             </div>
             <div>
                 <h2 class="text-xl">{data.artist.name}</h2>
             </div>
             <div class="flex flex-row space-x-4">
-                {#if data.artist.facebookName}
+                {#if data.artist.facebookName.toString() !== "null"}
                     <div class="tooltip" data-tip={data.artist.facebookName}>
                         <Fa icon={faFacebook} />
                     </div>
                 {/if}
-                {#if data.artist.instagramName}
+                {#if data.artist.instagramName.toString() !== "null"}
                     <div class="tooltip" data-tip={data.artist.instagramName}>
                         <Fa icon={faInstagram} />
                     </div>
                 {/if}
-                {#if data.artist.twitterName}
+                {#if data.artist.twitterName.toString() !== "null"}
                     <div class="tooltip" data-tip={data.artist.twitterName}>
                         <Fa icon={faTwitter} />
                     </div>
@@ -54,6 +54,10 @@
     }
     .description :global(p) {
         text-indent: 25px;
+    }
+    .description :global(a) {
+        color: darkslategray;
+        text-decoration: underline;
     }
 </style>
 <script>

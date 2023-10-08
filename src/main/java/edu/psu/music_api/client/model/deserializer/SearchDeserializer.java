@@ -5,8 +5,8 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
-import edu.psu.music_api.client.model.response.SearchResult;
 import edu.psu.music_api.client.model.response.Record;
+import edu.psu.music_api.client.model.response.SearchResult;
 import org.springframework.boot.jackson.JsonComponent;
 
 import java.io.IOException;
@@ -20,7 +20,7 @@ public class SearchDeserializer extends JsonDeserializer<SearchResult> {
     private static final String DATE_PATTERN = "MMM. d, yyyy";
 
     @Override
-    public SearchResult deserialize(JsonParser parser, DeserializationContext context) throws IOException, JacksonException {
+    public SearchResult deserialize(JsonParser parser, DeserializationContext context) throws IOException {
         JsonNode jsonNode = parser.getCodec().readTree(parser);
         JsonNode hits = jsonNode.get("response").get("hits");
         List<Record> records = new ArrayList<>();
