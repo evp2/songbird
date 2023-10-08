@@ -8,7 +8,7 @@
     {#if data.song}
         <div class="flex flex-col space-y-4">
             <div class="w-48 rounded-full">
-                <img src={data.song.thumbnail} />
+                <img src={data.song.thumbnail} alt={data.song.title} />
             </div>
             <div>
                 <h2 class="text-xl">{data.song.title}</h2>

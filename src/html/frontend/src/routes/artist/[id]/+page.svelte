@@ -8,7 +8,7 @@
     {#if data.artist}
         <div class="flex flex-col space-y-4">
             <div class="w-48 h-48">
-                <img src={data.artist.imageUrl} />
+                <img src={data.artist.imageUrl} alt={data.artist.name} />
             </div>
             <div>
                 <h2 class="text-xl">{data.artist.name}</h2>

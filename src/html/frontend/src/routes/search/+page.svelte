@@ -43,7 +43,7 @@
                                 <div class="flex items-center space-x-3">
                                     <div class="thumbnail">
                                         <div class="w-36 h-36">
-                                            <img src={result.thumbnail} />
+                                            <img src={result.thumbnail} alt={result.songTitle} />
                                         </div>
                                     </div>
                                 </div>
