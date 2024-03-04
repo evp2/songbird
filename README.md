@@ -1,6 +1,6 @@
 # SongBird
 
-An SvelteKit application that enables search for Lyrics, Artists, Albums.
+A SvelteKit application that enables search for Lyrics, Artists, Albums.
 
 # How to run
   In order to run the app you will need npm installed and credentials for the [Genius API](https://docs.genius.com). 
